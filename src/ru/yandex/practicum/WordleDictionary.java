@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import java.io.File;
 import java.util.List;
 
 /*
@@ -7,8 +8,12 @@ import java.util.List;
     его методы похожи на методы списка, но учитывают особенности игры
     также этот класс может содержать рутинные функции по сравнению слов, букв и т.д.
  */
-public class WordleDictionary {
+
+public class WordleDictionary   {
 
     private List<String> words;
 
+    public WordleDictionary(List<String> words) {
+        this.words = words;
+    }
 }
