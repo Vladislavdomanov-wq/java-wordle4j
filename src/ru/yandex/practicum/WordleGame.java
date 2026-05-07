@@ -85,7 +85,12 @@ public class WordleGame {
         return suitable.get(random.nextInt(suitable.size()));
     }
 
-    public int getSteps() { return steps; }
-    public String getAnswer() { return answer; }
+    public int getSteps() {
+        return steps;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
 
 }
