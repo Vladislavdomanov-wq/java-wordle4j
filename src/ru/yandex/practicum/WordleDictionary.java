@@ -1,10 +1,8 @@
 package ru.yandex.practicum;
 
-import java.io.File;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
+
 
 
 public class WordleDictionary {
