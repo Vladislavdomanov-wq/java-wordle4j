@@ -8,13 +8,16 @@ import java.util.Random;
 public class WordleDictionary {
 
     private List<String> words;
+    Random random = new Random();
 
     public WordleDictionary(List<String> words) {
         this.words = words;
     }
 
     public String getRandomWord() {
-        Random random = new Random();
+        if (words.isEmpty()) {
+            throw new IllegalStateException("Словарь пуст, невозможно выбрать слово");
+        }
         int index = random.nextInt(words.size());
         return words.get(index);
     }

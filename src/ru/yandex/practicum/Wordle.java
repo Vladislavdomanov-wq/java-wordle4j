@@ -17,7 +17,7 @@ public class Wordle  {
 
             WordleDictionaryLoader loader = new WordleDictionaryLoader();
             WordleDictionary dictionary = loader.load();
-            WordleGame game = new WordleGame(dictionary, 6);
+            WordleGame game = new WordleGame(dictionary);
 
             System.out.println("Добро пожаловать в Wordle!");
             System.out.println("Угадайте слово из 5 букв. У вас 6 попыток.");

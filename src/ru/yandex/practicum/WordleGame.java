@@ -5,21 +5,18 @@ import java.util.*;
 public class WordleGame {
 
     private char[] exactLetters = new char[5];
-
     private Set<Character> absentLetters = new HashSet<>();
-
     private Set<Character> presentLetters = new HashSet<>();
-
     private String answer;
-
+    public static final int MAX_STEPS = 6;
     private int steps;
-
     private WordleDictionary dictionary;
+    private Random random = new Random();
 
 
-    public WordleGame(WordleDictionary dictionary, int steps) {
+    public WordleGame(WordleDictionary dictionary) {
         this.dictionary = dictionary;
-        this.steps = steps;
+        this.steps = MAX_STEPS;
         this.answer = dictionary.getRandomWord();
         for (int i = 0; i < 5; i++) {
             exactLetters[i] = '_';
@@ -63,14 +60,14 @@ public class WordleGame {
             }
 
             for (char c : absentLetters) {
-                if (word.indexOf(c) != -1) {  // буква нашлась в слове — плохо
+                if (word.indexOf(c) != -1) {
                     matches = false;
                     break;
                 }
             }
 
             for (char c : presentLetters) {
-                if (word.indexOf(c) == -1) {  // буквы нет в слове — плохо
+                if (word.indexOf(c) == -1) {
                     matches = false;
                     break;
                 }
@@ -79,9 +76,12 @@ public class WordleGame {
             if (matches) {
                 suitable.add(word);
             }
+
+        }
+        if (suitable.isEmpty()) {
+            throw new IllegalStateException("Не найдено подходящих слов для подсказки");
         }
 
-        Random random = new Random();
         return suitable.get(random.nextInt(suitable.size()));
     }
 
