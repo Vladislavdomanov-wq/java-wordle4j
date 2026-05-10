@@ -1,14 +1,68 @@
 package ru.yandex.practicum;
 
 import java.util.List;
+import java.util.Random;
 
-/*
-этот класс содержит в себе список слов List<String>
-    его методы похожи на методы списка, но учитывают особенности игры
-    также этот класс может содержать рутинные функции по сравнению слов, букв и т.д.
- */
+
+
 public class WordleDictionary {
 
     private List<String> words;
+    Random random = new Random();
+
+    public WordleDictionary(List<String> words) {
+        this.words = words;
+    }
+
+    public String getRandomWord() {
+        if (words.isEmpty()) {
+            throw new IllegalStateException("Словарь пуст, невозможно выбрать слово");
+        }
+        int index = random.nextInt(words.size());
+        return words.get(index);
+    }
+
+    public boolean contains(String word) {
+        return words.contains(word);
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
+
+    public static String checkWord(String answer, String guess) {
+        char[] result = new char[5];
+        boolean[] used = new boolean[5];
+
+
+        for (int i = 0; i < 5; i++) {
+            if (answer.charAt(i) == guess.charAt(i)) {
+                result[i] = '+';
+                used[i] = true;
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (result[i] == '+') {
+                continue;
+            }
+
+            boolean found = false;
+            for (int j = 0; j < 5; j++) {
+                if (!used[j] && answer.charAt(j) == guess.charAt(i)) {
+                    result[i] = '^';
+                    used[j] = true;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                result[i] = '-';
+            }
+        }
+        return new String(result);
+    }
 
 }
+
+
